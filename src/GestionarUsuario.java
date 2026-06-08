@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GestionarUsuario {
@@ -10,26 +11,51 @@ public class GestionarUsuario {
         scan = new Scanner(System.in);
     }
 
-    public void RegistrarUsuario(){
-        scan.nextLine();
-        System.out.print("Digite el nombre: ");
-        String nombre = scan.nextLine();
+    public void RegistrarUsuario() throws Exception{
+        try{
+            scan.nextLine();
+            System.out.print("Digite el nombre: ");
+            String nombre = scan.nextLine();
         
-        System.out.print("Digite el edad: ");
-        int edad = scan.nextInt();
+            System.out.print("Digite el edad: ");
+            int edad = scan.nextInt();
 
-        scan.nextLine();
-        System.out.print("Digite el correo: ");
-        String correo = scan.nextLine();
+            scan.nextLine();
+            System.out.print("Digite el correo: ");
+            String correo = scan.nextLine();
 
-        System.out.print("Digite el salario: ");
-        double salario = scan.nextDouble();
+            System.out.print("Digite el salario: ");
+            double salario = scan.nextDouble();
 
-        Usuario nuevoUsuario = new Usuario(nombre, edad, correo, salario);
-        Usuarios.add(nuevoUsuario);
+            UsuarioService.validarUsuario(nombre, edad, correo, salario);
+
+            Usuario nuevoUsuario = new Usuario(nombre, edad, correo, salario);
+            Usuarios.add(nuevoUsuario);
+
+        }catch(InputMismatchException a){
+            System.out.println(a.getMessage());
+            scan.nextLine();
+        }catch(NombreInvalido e)
+        {
+            System.out.println(e.getMessage());
+
+        }catch(EdadInvalida i)
+        {
+            System.out.println(i.getMessage());
+
+        }catch(CorreoInvalido o){
+            System.out.print(o.getMessage());
+            
+        }catch(SalarioInvalido u){
+            System.out.println(u.getMessage());
+
+        }finally{
+            System.out.println("Proceso finalizado");
+
+        }
     }
 
-    public void Menu(){
+    public void Menu() throws Exception{
         int op;
         do {
             System.out.print("\nDigite:\n1-Registrar usuario\n2-Salir\n");
