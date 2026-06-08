@@ -33,8 +33,8 @@ public class GestionarUsuario {
             Usuarios.add(nuevoUsuario);
 
         }catch(InputMismatchException a){
-            System.out.println(a.getMessage());
             scan.nextLine();
+            System.out.println("Error: debe ingresar un numero valido");
         }catch(NombreInvalido e)
         {
             System.out.println(e.getMessage());
@@ -44,7 +44,7 @@ public class GestionarUsuario {
             System.out.println(i.getMessage());
 
         }catch(CorreoInvalido o){
-            System.out.print(o.getMessage());
+            System.out.println(o.getMessage());
             
         }catch(SalarioInvalido u){
             System.out.println(u.getMessage());

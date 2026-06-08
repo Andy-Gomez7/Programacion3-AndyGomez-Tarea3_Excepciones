@@ -6,7 +6,7 @@ public class UsuarioService{
         if(edad < 18 || edad > 100){
             throw new EdadInvalida("La edad debe ser mayor o igual a 18");
         }
-        if(!(correo.contains("@") && correo.contains("y") && correo.contains("."))){
+        if(!(correo.contains("@") && correo.contains("."))){
             throw new CorreoInvalido("El correo electronico no es valido");
         }
         if(salario < 0){
